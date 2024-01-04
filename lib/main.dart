@@ -50,6 +50,21 @@ class _HomeState extends State<Home> {
     Navigator.pushReplacement(context, MaterialPageRoute(builder: (context) => const LoginPage()));
   }
 
+  //Create a note
+  Future<void> createNote(String note) async {
+    await supabase.from('notes').insert({'body': note});
+  }
+
+  // Update Note
+  Future<void> updateNote(String noteId, String updatedBody) async {
+    await supabase.from('notes').update({'body': updatedBody}).eq('id', noteId);
+  }
+
+  // Delete Note
+  Future<void> deleteNote(String noteId) async {
+    await supabase.from('notes').delete().eq('id', noteId);
+  }
+
   @override
   Widget build(BuildContext context) {
     return Scaffold(
@@ -74,8 +89,67 @@ class _HomeState extends State<Home> {
             itemCount: notes.length,
             itemBuilder: (context, index) {
               final note = notes[index];
+              final noteId = note['id'].toString();
+
               return ListTile(
                 title: Text(note['body']),
+                trailing: Row(
+                  mainAxisSize: MainAxisSize.min,
+                  children: [
+                    IconButton(
+                      onPressed: () {
+                        // Trigger update note dialog
+                        showDialog(
+                          context: context,
+                          builder: (context) {
+                            return SimpleDialog(
+                              title: const Text('Update note'),
+                              contentPadding: const EdgeInsets.symmetric(horizontal: 12),
+                              children: [
+                                TextFormField(
+                                  initialValue: note['body'],
+                                  onFieldSubmitted: (value) async {
+                                    await updateNote(noteId, value);
+                                    if(mounted) Navigator.pop(context); // Close the dialog
+                                  },
+                                )
+                              ],
+                            );
+                          },
+                        );
+                      },
+                      icon: const Icon(Icons.edit),
+                    ),
+                    IconButton(
+                      onPressed: () async {
+                        // Trigger delete note confirmation
+                        bool deleteConfirmed = await showDialog(
+                          context: context,
+                          builder: (context) {
+                            return AlertDialog(
+                              title: const Text('Delete note?'),
+                              content: const Text('Are you sure you want to delete this note?'),
+                              actions: [
+                                TextButton(
+                                  onPressed: () => Navigator.of(context).pop(false),
+                                  child: const Text('Cancel'),
+                                ),
+                                TextButton(
+                                  onPressed: () => Navigator.of(context).pop(true),
+                                  child: const Text('Delete'),
+                                ),
+                              ],
+                            );
+                          },
+                        );
+                        if (deleteConfirmed != null && deleteConfirmed) {
+                          await deleteNote(noteId);
+                        }
+                      },
+                      icon: const Icon(Icons.delete),
+                    ),
+                  ],
+                ),
               );
             },
           );
@@ -91,9 +165,7 @@ class _HomeState extends State<Home> {
                   contentPadding: const EdgeInsets.symmetric(horizontal: 12),
                   children: [
                     TextFormField(
-                      onFieldSubmitted: (value) async {
-                        await supabase.from('notes').insert({'body': value});
-                      },
+                      onFieldSubmitted: createNote,
                     )
                   ],
                 );
