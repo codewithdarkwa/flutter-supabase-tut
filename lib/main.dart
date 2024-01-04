@@ -50,7 +50,7 @@ class _HomeState extends State<Home> {
     Navigator.pushReplacement(context, MaterialPageRoute(builder: (context) => const LoginPage()));
   }
 
-  //Create a note
+  //Create Note
   Future<void> createNote(String note) async {
     await supabase.from('notes').insert({'body': note});
   }
@@ -163,7 +163,7 @@ class _HomeState extends State<Home> {
                   contentPadding: const EdgeInsets.symmetric(horizontal: 12),
                   children: [
                     TextFormField(
-                      onFieldSubmitted: (value){
+                      onFieldSubmitted: (value) {
                         createNote(value);
                         if (mounted) Navigator.pop(context);
                       },
