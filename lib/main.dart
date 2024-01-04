@@ -98,7 +98,6 @@ class _HomeState extends State<Home> {
                   children: [
                     IconButton(
                       onPressed: () {
-                        // Trigger update note dialog
                         showDialog(
                           context: context,
                           builder: (context) {
@@ -110,7 +109,7 @@ class _HomeState extends State<Home> {
                                   initialValue: note['body'],
                                   onFieldSubmitted: (value) async {
                                     await updateNote(noteId, value);
-                                    if(mounted) Navigator.pop(context); // Close the dialog
+                                    if (mounted) Navigator.pop(context); // Close the dialog
                                   },
                                 )
                               ],
@@ -130,11 +129,11 @@ class _HomeState extends State<Home> {
                               content: const Text('Are you sure you want to delete this note?'),
                               actions: [
                                 TextButton(
-                                  onPressed: () => Navigator.of(context).pop(false),
+                                  onPressed: () => Navigator.pop(context, false),
                                   child: const Text('Cancel'),
                                 ),
                                 TextButton(
-                                  onPressed: () => Navigator.of(context).pop(true),
+                                  onPressed: () => Navigator.pop(context, true),
                                   child: const Text('Delete'),
                                 ),
                               ],
@@ -164,8 +163,11 @@ class _HomeState extends State<Home> {
                   contentPadding: const EdgeInsets.symmetric(horizontal: 12),
                   children: [
                     TextFormField(
-                      onFieldSubmitted: createNote,
-                    )
+                      onFieldSubmitted: (value){
+                        createNote(value);
+                        if (mounted) Navigator.pop(context);
+                      },
+                    ),
                   ],
                 );
               });
