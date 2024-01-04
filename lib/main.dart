@@ -56,8 +56,8 @@ class _HomeState extends State<Home> {
   }
 
   // Update Note
-  Future<void> updateNote(String noteId, String updatedBody) async {
-    await supabase.from('notes').update({'body': updatedBody}).eq('id', noteId);
+  Future<void> updateNote(String noteId, String updatedNote) async {
+    await supabase.from('notes').update({'body': updatedNote}).eq('id', noteId);
   }
 
   // Delete Note
@@ -122,7 +122,6 @@ class _HomeState extends State<Home> {
                     ),
                     IconButton(
                       onPressed: () async {
-                        // Trigger delete note confirmation
                         bool deleteConfirmed = await showDialog(
                           context: context,
                           builder: (context) {
@@ -142,7 +141,7 @@ class _HomeState extends State<Home> {
                             );
                           },
                         );
-                        if (deleteConfirmed != null && deleteConfirmed) {
+                        if (deleteConfirmed) {
                           await deleteNote(noteId);
                         }
                       },
