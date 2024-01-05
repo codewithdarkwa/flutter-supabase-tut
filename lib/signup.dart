@@ -73,9 +73,7 @@ class _SignUpPageState extends State<SignUpPage> {
                               width: 343,
                               decoration: BoxDecoration(
                                 color: Colors.white70,
-                                borderRadius: BorderRadius.circular(
-                                  5,
-                                ),
+                                borderRadius: BorderRadius.circular(5),
                                 border: Border.all(
                                   color: Colors.blue.shade50,
                                   width: 1,
@@ -87,15 +85,11 @@ class _SignUpPageState extends State<SignUpPage> {
                                     hintText: "Enter your email",
                                     hintStyle: TextStyle(fontSize: 12.0, color: Colors.blueGrey.shade300),
                                     enabledBorder: OutlineInputBorder(
-                                      borderRadius: BorderRadius.circular(
-                                        5,
-                                      ),
+                                      borderRadius: BorderRadius.circular(5),
                                       borderSide: const BorderSide(color: Colors.white70),
                                     ),
                                     focusedBorder: OutlineInputBorder(
-                                      borderRadius: BorderRadius.circular(
-                                        5,
-                                      ),
+                                      borderRadius: BorderRadius.circular(5),
                                       borderSide: const BorderSide(color: Colors.white70),
                                     ),
                                     prefixIcon: const Padding(
@@ -124,9 +118,7 @@ class _SignUpPageState extends State<SignUpPage> {
                             ),
                             decoration: BoxDecoration(
                               color: Colors.white70,
-                              borderRadius: BorderRadius.circular(
-                                5,
-                              ),
+                              borderRadius: BorderRadius.circular(5),
                               border: Border.all(
                                 color: Colors.blue.shade50,
                                 width: 1,
@@ -139,15 +131,11 @@ class _SignUpPageState extends State<SignUpPage> {
                                   hintText: "Enter Password",
                                   hintStyle: TextStyle(fontSize: 12.0, color: Colors.blueGrey.shade300),
                                   enabledBorder: OutlineInputBorder(
-                                    borderRadius: BorderRadius.circular(
-                                      5,
-                                    ),
+                                    borderRadius: BorderRadius.circular(5),
                                     borderSide: const BorderSide(color: Colors.white70),
                                   ),
                                   focusedBorder: OutlineInputBorder(
-                                    borderRadius: BorderRadius.circular(
-                                      5,
-                                    ),
+                                    borderRadius: BorderRadius.circular(5),
                                     borderSide: const BorderSide(color: Colors.white70),
                                   ),
                                   prefixIcon: const Padding(
@@ -175,9 +163,7 @@ class _SignUpPageState extends State<SignUpPage> {
                             ),
                             decoration: BoxDecoration(
                               color: Colors.white70,
-                              borderRadius: BorderRadius.circular(
-                                5,
-                              ),
+                              borderRadius: BorderRadius.circular(5),
                               border: Border.all(
                                 color: Colors.blue.shade50,
                                 width: 1,
@@ -189,15 +175,11 @@ class _SignUpPageState extends State<SignUpPage> {
                                   hintText: "Enter username",
                                   hintStyle: TextStyle(fontSize: 12.0, color: Colors.blueGrey.shade300),
                                   enabledBorder: OutlineInputBorder(
-                                    borderRadius: BorderRadius.circular(
-                                      5,
-                                    ),
+                                    borderRadius: BorderRadius.circular(5),
                                     borderSide: const BorderSide(color: Colors.white70),
                                   ),
                                   focusedBorder: OutlineInputBorder(
-                                    borderRadius: BorderRadius.circular(
-                                      5,
-                                    ),
+                                    borderRadius: BorderRadius.circular(5),
                                     borderSide: const BorderSide(color: Colors.white70),
                                   ),
                                   prefixIcon: const Padding(
@@ -226,9 +208,7 @@ class _SignUpPageState extends State<SignUpPage> {
                               child: Container(
                                 decoration: BoxDecoration(
                                   color: Colors.blue,
-                                  borderRadius: BorderRadius.circular(
-                                    5,
-                                  ),
+                                  borderRadius: BorderRadius.circular(5),
                                   border: Border.all(
                                     color: Colors.white,
                                     width: 1,
