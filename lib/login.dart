@@ -85,15 +85,11 @@ class _LoginPageState extends State<LoginPage> {
                                     hintText: "Enter your email",
                                     hintStyle: TextStyle(fontSize: 12.0, color: Colors.blueGrey.shade300),
                                     enabledBorder: OutlineInputBorder(
-                                      borderRadius: BorderRadius.circular(
-                                        5,
-                                      ),
+                                      borderRadius: BorderRadius.circular(5),
                                       borderSide: const BorderSide(color: Colors.white70),
                                     ),
                                     focusedBorder: OutlineInputBorder(
-                                      borderRadius: BorderRadius.circular(
-                                        5,
-                                      ),
+                                      borderRadius: BorderRadius.circular(5),
                                       borderSide: const BorderSide(color: Colors.white70),
                                     ),
                                     prefixIcon: const Padding(
@@ -122,9 +118,7 @@ class _LoginPageState extends State<LoginPage> {
                             ),
                             decoration: BoxDecoration(
                               color: Colors.white70,
-                              borderRadius: BorderRadius.circular(
-                                5,
-                              ),
+                              borderRadius: BorderRadius.circular(5),
                               border: Border.all(
                                 color: Colors.blue.shade50,
                                 width: 1,
@@ -137,15 +131,11 @@ class _LoginPageState extends State<LoginPage> {
                                   hintText: "Enter Password",
                                   hintStyle: TextStyle(fontSize: 12.0, color: Colors.blueGrey.shade300),
                                   enabledBorder: OutlineInputBorder(
-                                    borderRadius: BorderRadius.circular(
-                                      5,
-                                    ),
+                                    borderRadius: BorderRadius.circular(5),
                                     borderSide: const BorderSide(color: Colors.white70),
                                   ),
                                   focusedBorder: OutlineInputBorder(
-                                    borderRadius: BorderRadius.circular(
-                                      5,
-                                    ),
+                                    borderRadius: BorderRadius.circular(5),
                                     borderSide: const BorderSide(color: Colors.white70),
                                   ),
                                   prefixIcon: const Padding(
