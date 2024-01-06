@@ -46,16 +46,9 @@ class _SignUpPageState extends State<SignUpPage> {
                     crossAxisAlignment: CrossAxisAlignment.center,
                     mainAxisAlignment: MainAxisAlignment.center,
                     children: [
-                      Container(
-                          height: 34,
-                          width: 264,
-                          margin: const EdgeInsets.only(
-                            left: 15,
-                            right: 16,
-                          ),
-                          child: const Text("Welcome to Supabase",
-                              textAlign: TextAlign.center,
-                              style: TextStyle(fontWeight: FontWeight.bold, fontSize: 26))),
+                      const Text("Welcome to Supabase",
+                          textAlign: TextAlign.center,
+                          style: TextStyle(fontWeight: FontWeight.bold, fontSize: 26)),
                       Padding(
                         padding: const EdgeInsets.only(
                           left: 16,
