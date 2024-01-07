@@ -39,170 +39,162 @@ class _SignUpPageState extends State<SignUpPage> {
           child: Padding(
             padding: const EdgeInsets.all(20.0),
             child: Column(
-                crossAxisAlignment: CrossAxisAlignment.center,
-                mainAxisAlignment: MainAxisAlignment.center,
-                children: [
-                  const Text(
-                    "Welcome to Supabase",
-                    style: TextStyle(fontWeight: FontWeight.bold, fontSize: 26),
-                  ),
-                  Padding(
-                    padding: const EdgeInsets.all(15.0),
+              crossAxisAlignment: CrossAxisAlignment.center,
+              mainAxisAlignment: MainAxisAlignment.center,
+              children: [
+                const Text(
+                  "SignUp",
+                  style: TextStyle(fontWeight: FontWeight.bold, fontSize: 26),
+                ),
+                Padding(
+                  padding: const EdgeInsets.all(15.0),
+                  child: Container(
+                    decoration: BoxDecoration(
+                      borderRadius: BorderRadius.circular(5),
+                      border: Border.all(color: Colors.blue.shade50),
+                    ),
                     child: TextFormField(
                       controller: emailController,
-                      validator: (value) {
-                        if (value!.isEmpty) {
-                          return 'Required field missing';
-                        }
-                        return null;
-                      },
                       autovalidateMode: AutovalidateMode.onUserInteraction,
                       decoration: InputDecoration(
                         hintText: 'Enter your email',
-                        prefixIcon: const Icon(Icons.email, color: Colors.grey),
-                        border: OutlineInputBorder(
+                        prefixIcon: const Icon(Icons.email),
+                        enabledBorder: OutlineInputBorder(
                           borderRadius: BorderRadius.circular(8),
                           borderSide: const BorderSide(
-                            color: Colors.grey,
+                            color: Colors.white70,
                           ),
                         ),
                         focusedBorder: OutlineInputBorder(
                           borderRadius: BorderRadius.circular(8),
-                          borderSide: const BorderSide(
-                            color: Colors.grey,
-                          ),
+                          borderSide: const BorderSide(color: Colors.white70),
                         ),
-                        hintStyle: const TextStyle(color: Colors.grey),
+                        hintStyle: TextStyle(fontSize: 12.0, color: Colors.blueGrey.shade300),
                         contentPadding: const EdgeInsets.all(12),
                       ),
                     ),
                   ),
-                  Padding(
-                    padding: const EdgeInsets.all(15.0),
+                ),
+                Padding(
+                  padding: const EdgeInsets.all(15.0),
+                  child: Container(
+                    decoration: BoxDecoration(
+                      borderRadius: BorderRadius.circular(5),
+                      border: Border.all(
+                        color: Colors.blue.shade50,
+                        width: 1,
+                      ),
+                    ),
                     child: TextFormField(
                       controller: passwordController,
-                      validator: (value) {
-                        if (value!.isEmpty) {
-                          return 'Required field missing';
-                        }
-                        return null;
-                      },
                       autovalidateMode: AutovalidateMode.onUserInteraction,
                       decoration: InputDecoration(
                         hintText: 'Enter your password',
-                        prefixIcon: const Icon(Icons.lock, color: Colors.grey),
-                        border: OutlineInputBorder(
+                        prefixIcon: const Icon(Icons.lock),
+                        enabledBorder: OutlineInputBorder(
                           borderRadius: BorderRadius.circular(8),
                           borderSide: const BorderSide(
-                            color: Colors.grey,
+                            color: Colors.white70,
                           ),
                         ),
                         focusedBorder: OutlineInputBorder(
                           borderRadius: BorderRadius.circular(8),
-                          borderSide: const BorderSide(
-                            color: Colors.grey,
-                          ),
+                          borderSide: const BorderSide(color: Colors.white70),
                         ),
-                        hintStyle: const TextStyle(color: Colors.grey),
+                        hintStyle: TextStyle(fontSize: 12.0, color: Colors.blueGrey.shade300),
                         contentPadding: const EdgeInsets.all(12),
                       ),
                     ),
                   ),
-                  Padding(
-                    padding: const EdgeInsets.all(15.0),
+                ),
+                Padding(
+                  padding: const EdgeInsets.all(15.0),
+                  child: Container(
+                    decoration: BoxDecoration(
+                      borderRadius: BorderRadius.circular(5),
+                      border: Border.all(
+                        color: Colors.blue.shade50,
+                      ),
+                    ),
                     child: TextFormField(
                       controller: usernameController,
-                      validator: (value) {
-                        if (value!.isEmpty) {
-                          return 'Required field missing';
-                        }
-                        return null;
-                      },
                       autovalidateMode: AutovalidateMode.onUserInteraction,
                       decoration: InputDecoration(
                         hintText: 'Enter your username',
-                        prefixIcon: const Icon(Icons.email, color: Colors.grey),
-                        border: OutlineInputBorder(
+                        prefixIcon: const Icon(Icons.person),
+                        enabledBorder: OutlineInputBorder(
                           borderRadius: BorderRadius.circular(8),
                           borderSide: const BorderSide(
-                            color: Colors.grey,
+                            color: Colors.white70,
                           ),
                         ),
                         focusedBorder: OutlineInputBorder(
                           borderRadius: BorderRadius.circular(8),
-                          borderSide: const BorderSide(
-                            color: Colors.grey,
-                          ),
+                          borderSide: const BorderSide(color: Colors.white70),
                         ),
-                        hintStyle: const TextStyle(color: Colors.grey),
+                        hintStyle: TextStyle(fontSize: 12.0, color: Colors.blueGrey.shade300),
                         contentPadding: const EdgeInsets.all(12),
                       ),
                     ),
                   ),
-                  Padding(
-                    padding: const EdgeInsets.only(top: 15.0),
-                    child: GestureDetector(
-                      onTap: signUp,
-                      child: Container(
-                        alignment: Alignment.center,
-                        height: 45,
-                        width: 360,
-                        decoration: BoxDecoration(
-                          color: Colors.blue,
-                          borderRadius: BorderRadius.circular(5),
-                        ),
-                        child: const Text(
-                          "Sign Up",
-                          textAlign: TextAlign.center,
-                          style: TextStyle(
-                            color: Colors.white,
-                            fontSize: 20,
-                          ),
+                ),
+                Padding(
+                  padding: const EdgeInsets.only(top: 15.0),
+                  child: GestureDetector(
+                    onTap: signUp,
+                    child: Container(
+                      alignment: Alignment.center,
+                      height: 45,
+                      width: 360,
+                      decoration: BoxDecoration(
+                        color: Colors.blue,
+                        borderRadius: BorderRadius.circular(5),
+                      ),
+                      child: const Text(
+                        "Sign Up",
+                        textAlign: TextAlign.center,
+                        style: TextStyle(
+                          color: Colors.white,
+                          fontSize: 20,
                         ),
                       ),
                     ),
                   ),
-                  GestureDetector(
+                ),
+                Padding(
+                  padding: const EdgeInsets.only(top: 8.0),
+                  child: GestureDetector(
                     onTap: () {
                       Navigator.push(context, MaterialPageRoute(builder: (context) => const LoginPage()));
                     },
-                    child: Container(
-                      width: 212,
-                      margin: const EdgeInsets.only(left: 81, top: 8, right: 82),
-                      child: RichText(
-                        text: TextSpan(
-                          children: <InlineSpan>[
-                            TextSpan(
-                              text: "Already have an account?",
-                              style: TextStyle(
-                                color: Colors.blueGrey.shade300,
-                                fontSize: 12,
-                                fontWeight: FontWeight.w400,
-                              ),
+                    child: RichText(
+                      text: TextSpan(
+                        children: [
+                          TextSpan(
+                            text: "Already have an account?",
+                            style: TextStyle(
+                              color: Colors.blueGrey.shade300,
+                              fontSize: 12,
+                              fontWeight: FontWeight.w400,
                             ),
-                            TextSpan(
-                              text: ' ',
-                              style: TextStyle(
-                                  color: Colors.indigo.shade300,
-                                  fontSize: 12,
-                                  fontFamily: 'Poppins',
-                                  fontWeight: FontWeight.w700),
-                            ),
-                            TextSpan(
-                              text: "SignIn",
-                              style: TextStyle(
-                                  color: Colors.lightBlue.shade300,
-                                  fontSize: 12,
-                                  fontFamily: 'Poppins',
-                                  fontWeight: FontWeight.w700),
-                            )
-                          ],
-                        ),
-                        textAlign: TextAlign.center,
+                          ),
+                          TextSpan(
+                            text: ' ',
+                            style: TextStyle(color: Colors.indigo.shade300, fontSize: 12, fontWeight: FontWeight.w700),
+                          ),
+                          TextSpan(
+                            text: "SignIn",
+                            style:
+                                TextStyle(color: Colors.lightBlue.shade300, fontSize: 12, fontWeight: FontWeight.w700),
+                          )
+                        ],
                       ),
+                      textAlign: TextAlign.center,
                     ),
-                  )
-                ]),
+                  ),
+                )
+              ],
+            ),
           ),
         ),
       ),
