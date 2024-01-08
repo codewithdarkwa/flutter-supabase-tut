@@ -7,9 +7,9 @@ Future<void> main() async {
   WidgetsFlutterBinding.ensureInitialized();
 
   await Supabase.initialize(
-    url: 'https://swnojhycpnkbojqczxbe.supabase.co',
+    url: 'https://srhlnbbxsejspusksgjv.supabase.co',
     anonKey:
-        'eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJpc3MiOiJzdXBhYmFzZSIsInJlZiI6InN3bm9qaHljcG5rYm9qcWN6eGJlIiwicm9sZSI6ImFub24iLCJpYXQiOjE3MDQxMDI5MjQsImV4cCI6MjAxOTY3ODkyNH0.YcJoahPlqk4mSzrdwvAmdOu3s7VDOAwcaqp51Em1B34',
+        'eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJpc3MiOiJzdXBhYmFzZSIsInJlZiI6InNyaGxuYmJ4c2Vqc3B1c2tzZ2p2Iiwicm9sZSI6ImFub24iLCJpYXQiOjE3MDQ2NTQyNTMsImV4cCI6MjAyMDIzMDI1M30.8-D63eyxsX7dz1eKEvCXBCN5_jp07neDTsJWnWfI1-4',
   );
   runApp(const MyApp());
 }
@@ -41,14 +41,14 @@ class Home extends StatefulWidget {
 }
 
 class _HomeState extends State<Home> {
-  final noteStream = supabase.from('notes').stream(primaryKey: ['id']);
-
   //Sign Out User
   Future<void> signOut() async {
     await supabase.auth.signOut();
     if (!mounted) return;
     Navigator.pushReplacement(context, MaterialPageRoute(builder: (context) => const LoginPage()));
   }
+
+  final noteStream = supabase.from('notes').stream(primaryKey: ['id']);
 
   //Create Note
   Future<void> createNote(String note) async {
@@ -76,10 +76,31 @@ class _HomeState extends State<Home> {
             icon: const Icon(Icons.logout_outlined),
           )
         ],
+        automaticallyImplyLeading: false,
       ),
-      body: StreamBuilder<List<Map<String, dynamic>>>(
+      floatingActionButton: FloatingActionButton(
+        onPressed: () {
+          showDialog(
+              context: context,
+              builder: (context) {
+                return SimpleDialog(
+                  title: const Text('Add a note'),
+                  children: [
+                    TextFormField(
+                      onFieldSubmitted: (value) {
+                        createNote(value);
+                        if (mounted) Navigator.pop(context);
+                      },
+                    )
+                  ],
+                );
+              });
+        },
+        child: const Icon(Icons.add),
+      ),
+      body: StreamBuilder(
         stream: noteStream,
-        builder: (BuildContext context, snapshot) {
+        builder: (context, snapshot) {
           if (!snapshot.hasData) {
             return const Center(child: CircularProgressIndicator());
           }
@@ -99,80 +120,62 @@ class _HomeState extends State<Home> {
                     IconButton(
                       onPressed: () {
                         showDialog(
-                          context: context,
-                          builder: (context) {
-                            return SimpleDialog(
-                              title: const Text('Update note'),
-                              contentPadding: const EdgeInsets.symmetric(horizontal: 12),
-                              children: [
-                                TextFormField(
-                                  initialValue: note['body'],
-                                  onFieldSubmitted: (value) async {
-                                    await updateNote(noteId, value);
-                                    if (mounted) Navigator.pop(context); // Close the dialog
-                                  },
-                                )
-                              ],
-                            );
-                          },
-                        );
+                            context: context,
+                            builder: (context) {
+                              return SimpleDialog(
+                                title: const Text('Edit a note'),
+                                children: [
+                                  TextFormField(
+                                    initialValue: note['body'],
+                                    onFieldSubmitted: (value) async {
+                                      await updateNote(noteId, value);
+                                      if (mounted) Navigator.pop(context);
+                                    },
+                                  )
+                                ],
+                              );
+                            });
                       },
                       icon: const Icon(Icons.edit),
                     ),
                     IconButton(
                       onPressed: () async {
-                        bool deleteConfirmed = await showDialog(
+                        bool deletedConfirmed = await showDialog(
                           context: context,
                           builder: (context) {
                             return AlertDialog(
-                              title: const Text('Delete note?'),
+                              title: const Text('Delete note'),
                               content: const Text('Are you sure you want to delete this note?'),
                               actions: [
                                 TextButton(
-                                  onPressed: () => Navigator.pop(context, false),
+                                  onPressed: () {
+                                    Navigator.pop(context, false);
+                                  },
                                   child: const Text('Cancel'),
                                 ),
                                 TextButton(
-                                  onPressed: () => Navigator.pop(context, true),
+                                  onPressed: () {
+                                    Navigator.pop(context,true);
+                                  },
                                   child: const Text('Delete'),
                                 ),
                               ],
                             );
+
                           },
                         );
-                        if (deleteConfirmed) {
+                        if(deletedConfirmed){
                           await deleteNote(noteId);
                         }
                       },
                       icon: const Icon(Icons.delete),
-                    ),
+                    )
                   ],
                 ),
               );
             },
           );
         },
-      ),
-      floatingActionButton: FloatingActionButton(
-        onPressed: () {
-          showDialog(
-              context: context,
-              builder: (context) {
-                return SimpleDialog(
-                  title: const Text('Add a new note'),
-                  contentPadding: const EdgeInsets.symmetric(horizontal: 12),
-                  children: [
-                    TextFormField(
-                      onFieldSubmitted: (value) {
-                        createNote(value);
-                        if (mounted) Navigator.pop(context);
-                      },
-                    ),
-                  ],
-                );
-              });
-        },
-        child: const Icon(Icons.add),
       ),
     );
   }

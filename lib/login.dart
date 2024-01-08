@@ -4,6 +4,7 @@ import 'package:supabase_flutter/supabase_flutter.dart';
 
 import 'main.dart';
 
+
 class LoginPage extends StatefulWidget {
   const LoginPage({super.key});
 
@@ -19,13 +20,14 @@ class _LoginPageState extends State<LoginPage> {
   Future<void> signIn() async {
     try {
       await supabase.auth.signInWithPassword(
-        email: emailController.text,
-        password: passwordController.text,
+          password: passwordController.text.trim(),
+          email: emailController.text.trim(),
       );
-      if (!mounted) return;
-      Navigator.pushReplacement(context, MaterialPageRoute(builder: (context) => const Home()));
+      if(!mounted) return;
+
+      Navigator.pushReplacement(context, MaterialPageRoute(builder: (context)=> const Home()));
     } on AuthException catch (e) {
-      debugPrint(e.toString());
+      print(e);
     }
   }
 
@@ -109,7 +111,7 @@ class _LoginPageState extends State<LoginPage> {
                       height: 45,
                       width: 360,
                       decoration: BoxDecoration(
-                        color: Colors.blue,
+                        color: Colors.purpleAccent,
                         borderRadius: BorderRadius.circular(5),
                       ),
                       child: const Text(
@@ -129,42 +131,27 @@ class _LoginPageState extends State<LoginPage> {
                     onTap: () {
                       Navigator.push(context, MaterialPageRoute(builder: (context) => const SignUpPage()));
                     },
-                    child: Container(
-                      width: 212,
-                      margin: const EdgeInsets.only(
-                        left: 81,
-                        top: 8,
-                        right: 82,
-                      ),
-                      child: RichText(
-                          text: TextSpan(children: <InlineSpan>[
-                            TextSpan(
-                              text: "Already have an account?",
-                              style: TextStyle(
-                                  color: Colors.blueGrey.shade300,
-                                  fontSize: 12,
-                                  fontFamily: 'Poppins',
-                                  fontWeight: FontWeight.w400),
-                            ),
-                            TextSpan(
-                              text: ' ',
-                              style: TextStyle(
-                                  color: Colors.indigo.shade300,
-                                  fontSize: 12,
-                                  fontFamily: 'Poppins',
-                                  fontWeight: FontWeight.w700),
-                            ),
-                            TextSpan(
-                              text: "SignUp",
-                              style: TextStyle(
-                                  color: Colors.lightBlue.shade300,
-                                  fontSize: 12,
-                                  fontFamily: 'Poppins',
-                                  fontWeight: FontWeight.w700),
-                            )
-                          ]),
-                          textAlign: TextAlign.center),
-                    ),
+                    child: RichText(
+                        text: TextSpan(children: <InlineSpan>[
+                          TextSpan(
+                            text: "Already have an account?",
+                            style:
+                                TextStyle(color: Colors.blueGrey.shade300, fontSize: 12, fontWeight: FontWeight.w400),
+                          ),
+                          TextSpan(
+                            text: ' ',
+                            style: TextStyle(color: Colors.indigo.shade300, fontSize: 12, fontWeight: FontWeight.w700),
+                          ),
+                          const TextSpan(
+                            text: "SignUp",
+                            style: TextStyle(
+                                color: Colors.purpleAccent,
+                                fontSize: 12,
+                                fontFamily: 'Poppins',
+                                fontWeight: FontWeight.w700),
+                          )
+                        ]),
+                        textAlign: TextAlign.center),
                   ),
                 )
               ],

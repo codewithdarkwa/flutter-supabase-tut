@@ -1,8 +1,7 @@
 import 'package:flutter/material.dart';
 import 'package:flutter_supabase/login.dart';
+import 'package:flutter_supabase/main.dart';
 import 'package:supabase_flutter/supabase_flutter.dart';
-
-import 'main.dart';
 
 class SignUpPage extends StatefulWidget {
   const SignUpPage({super.key});
@@ -20,14 +19,15 @@ class _SignUpPageState extends State<SignUpPage> {
   Future<void> signUp() async {
     try {
       await supabase.auth.signUp(
-        email: emailController.text,
-        password: passwordController.text,
-        data: {'username': usernameController.text},
+        password: passwordController.text.trim(),
+        email: emailController.text.trim(),
+        data: {'username': usernameController.text.trim()}
       );
-      if (!mounted) return;
-      Navigator.pushReplacement(context, MaterialPageRoute(builder: (context) => const Home()));
+      if(!mounted) return;
+
+      Navigator.pushReplacement(context, MaterialPageRoute(builder: (context)=> const Home()));
     } on AuthException catch (e) {
-      debugPrint(e.toString());
+      print(e);
     }
   }
 
@@ -55,7 +55,6 @@ class _SignUpPageState extends State<SignUpPage> {
                     ),
                     child: TextFormField(
                       controller: emailController,
-                      autovalidateMode: AutovalidateMode.onUserInteraction,
                       decoration: InputDecoration(
                         hintText: 'Enter your email',
                         prefixIcon: const Icon(Icons.email),
@@ -87,7 +86,7 @@ class _SignUpPageState extends State<SignUpPage> {
                     ),
                     child: TextFormField(
                       controller: passwordController,
-                      autovalidateMode: AutovalidateMode.onUserInteraction,
+                      obscureText: true,
                       decoration: InputDecoration(
                         hintText: 'Enter your password',
                         prefixIcon: const Icon(Icons.lock),
@@ -147,7 +146,7 @@ class _SignUpPageState extends State<SignUpPage> {
                       height: 45,
                       width: 360,
                       decoration: BoxDecoration(
-                        color: Colors.blue,
+                        color: Colors.purpleAccent,
                         borderRadius: BorderRadius.circular(5),
                       ),
                       child: const Text(
@@ -182,10 +181,9 @@ class _SignUpPageState extends State<SignUpPage> {
                             text: ' ',
                             style: TextStyle(color: Colors.indigo.shade300, fontSize: 12, fontWeight: FontWeight.w700),
                           ),
-                          TextSpan(
+                          const TextSpan(
                             text: "SignIn",
-                            style:
-                                TextStyle(color: Colors.lightBlue.shade300, fontSize: 12, fontWeight: FontWeight.w700),
+                            style: TextStyle(color: Colors.purpleAccent, fontSize: 12, fontWeight: FontWeight.w700),
                           )
                         ],
                       ),
