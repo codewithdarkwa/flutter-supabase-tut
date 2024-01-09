@@ -27,7 +27,7 @@ class _SignUpPageState extends State<SignUpPage> {
 
       Navigator.pushReplacement(context, MaterialPageRoute(builder: (context)=> const Home()));
     } on AuthException catch (e) {
-      print(e);
+      debugPrint(e.message);
     }
   }
 
