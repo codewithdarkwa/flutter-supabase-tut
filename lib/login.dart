@@ -4,7 +4,6 @@ import 'package:supabase_flutter/supabase_flutter.dart';
 
 import 'main.dart';
 
-
 class LoginPage extends StatefulWidget {
   const LoginPage({super.key});
 
@@ -20,12 +19,12 @@ class _LoginPageState extends State<LoginPage> {
   Future<void> signIn() async {
     try {
       await supabase.auth.signInWithPassword(
-          password: passwordController.text.trim(),
-          email: emailController.text.trim(),
+        password: passwordController.text.trim(),
+        email: emailController.text.trim(),
       );
-      if(!mounted) return;
+      if (!mounted) return;
 
-      Navigator.pushReplacement(context, MaterialPageRoute(builder: (context)=> const Home()));
+      Navigator.pushReplacement(context, MaterialPageRoute(builder: (context) => const Home()));
     } on AuthException catch (e) {
       debugPrint(e.message);
     }
@@ -132,25 +131,28 @@ class _LoginPageState extends State<LoginPage> {
                       Navigator.push(context, MaterialPageRoute(builder: (context) => const SignUpPage()));
                     },
                     child: RichText(
-                        text: TextSpan(children: <InlineSpan>[
-                          TextSpan(
-                            text: "Already have an account?",
-                            style:
-                                TextStyle(color: Colors.blueGrey.shade300, fontSize: 12, fontWeight: FontWeight.w400),
-                          ),
-                          TextSpan(
-                            text: ' ',
-                            style: TextStyle(color: Colors.indigo.shade300, fontSize: 12, fontWeight: FontWeight.w700),
-                          ),
-                          const TextSpan(
-                            text: "SignUp",
-                            style: TextStyle(
-                                color: Colors.purpleAccent,
-                                fontSize: 12,
-                                fontFamily: 'Poppins',
-                                fontWeight: FontWeight.w700),
-                          )
-                        ]),
+                        text: TextSpan(
+                          children: <InlineSpan>[
+                            TextSpan(
+                              text: "Already have an account?",
+                              style:
+                                  TextStyle(color: Colors.blueGrey.shade300, fontSize: 12, fontWeight: FontWeight.w400),
+                            ),
+                            TextSpan(
+                              text: ' ',
+                              style:
+                                  TextStyle(color: Colors.indigo.shade300, fontSize: 12, fontWeight: FontWeight.w700),
+                            ),
+                            const TextSpan(
+                              text: "SignUp",
+                              style: TextStyle(
+                                  color: Colors.purpleAccent,
+                                  fontSize: 12,
+                                  fontFamily: 'Poppins',
+                                  fontWeight: FontWeight.w700),
+                            )
+                          ],
+                        ),
                         textAlign: TextAlign.center),
                   ),
                 )
