@@ -148,7 +148,6 @@ class _LoginPageState extends State<LoginPage> {
                               style: TextStyle(
                                   color: Colors.purpleAccent,
                                   fontSize: 12,
-                                  fontFamily: 'Poppins',
                                   fontWeight: FontWeight.w700),
                             )
                           ],
