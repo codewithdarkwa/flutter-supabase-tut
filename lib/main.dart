@@ -120,21 +120,22 @@ class _HomeState extends State<Home> {
                     IconButton(
                       onPressed: () {
                         showDialog(
-                            context: context,
-                            builder: (context) {
-                              return SimpleDialog(
-                                title: const Text('Edit a note'),
-                                children: [
-                                  TextFormField(
-                                    initialValue: note['body'],
-                                    onFieldSubmitted: (value) async {
-                                      await updateNote(noteId, value);
-                                      if (mounted) Navigator.pop(context);
-                                    },
-                                  )
-                                ],
-                              );
-                            });
+                          context: context,
+                          builder: (context) {
+                            return SimpleDialog(
+                              title: const Text('Edit a note'),
+                              children: [
+                                TextFormField(
+                                  initialValue: note['body'],
+                                  onFieldSubmitted: (value) async {
+                                    await updateNote(noteId, value);
+                                    if (mounted) Navigator.pop(context);
+                                  },
+                                )
+                              ],
+                            );
+                          },
+                        );
                       },
                       icon: const Icon(Icons.edit),
                     ),
@@ -155,16 +156,15 @@ class _HomeState extends State<Home> {
                                 ),
                                 TextButton(
                                   onPressed: () {
-                                    Navigator.pop(context,true);
+                                    Navigator.pop(context, true);
                                   },
                                   child: const Text('Delete'),
                                 ),
                               ],
                             );
-
                           },
                         );
-                        if(deletedConfirmed){
+                        if (deletedConfirmed) {
                           await deleteNote(noteId);
                         }
                       },
